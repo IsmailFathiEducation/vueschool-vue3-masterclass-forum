@@ -1,16 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import sourceData from '@/data.json'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChuckName: "PageHome" */ '@/views/PageHome.vue')
+    name: 'Home',
+    component: () => import(/* webpackChuckName: "PageHome" */ '@/views/Home.vue')
   },
   {
     path: '/thread/:threadId',
     name: 'ThreadShow',
-    component: () => import(/* webpackChuckName: "PageThreadShow" */ '@/views/PageThreadShow.vue'),
-    props: true
+    component: () => import(/* webpackChuckName: "PageThreadShow" */ '@/views/ThreadShow.vue'),
+    props: true,
+    beforeEnter: (to, from, next) => {
+      const threadExists = sourceData.threads.find(t => t.id === to.params.threadId)
+      if (threadExists) {
+        next()
+      } else {
+        next({
+          name: 'NotFound',
+          params: { pathMatch: to.path.substring(1).split('/') },
+          query: to.query,
+          hash: to.hash,
+        })
+      }
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import(/* webpackChuckName: "NotFound" */ '@/views/NotFound.vue')
   }
 ]
 
