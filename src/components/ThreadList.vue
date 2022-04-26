@@ -13,7 +13,7 @@
           </p>
           <p class="text-faded text-xsmall">
             By <a href="#">{{ userById(thread.userId).name }}</a
-            >, {{ thread.publishedAt }}.
+            >, <app-date :timestamp="thread.publishedAt" />.
           </p>
         </div>
 
@@ -30,7 +30,9 @@
             <p class="text-xsmall">
               <a href="profile.html">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.lastPostAt }}</p>
+            <p class="text-xsmall text-faded">
+              <app-date :timestamp="thread.lastPostAt" />
+            </p>
           </div>
         </div>
       </div>
@@ -48,6 +50,7 @@
 
 <script>
 import sourceData from '@/data.json';
+import AppDate from '@/components/AppDate.vue';
 export default {
   name: 'ThreadList',
   props: {
@@ -55,6 +58,9 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  components: {
+    AppDate,
   },
   data() {
     return {

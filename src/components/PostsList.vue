@@ -34,21 +34,14 @@
         ></a>
       </div>
 
-      <div class="post-date text-faded" :title="fullDate(post.publishedAt)">
-        {{ timeAgo(post.publishedAt) }}
-      </div>
+      <app-date :timestamp="post.publishedAt" class="post-date text-faded" />
     </div>
   </div>
 </template>
 
 <script>
 import sourceData from '@/data.json';
-
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-dayjs.extend(relativeTime);
-dayjs.extend(localizedFormat);
+import AppDate from '@/components/AppDate.vue';
 
 export default {
   name: 'PostsList',
@@ -58,6 +51,9 @@ export default {
       required: true,
     },
   },
+  components: {
+    AppDate,
+  },
   data() {
     return {
       users: sourceData.users,
@@ -66,12 +62,6 @@ export default {
   methods: {
     userById(userId) {
       return this.users.find((u) => u.id === userId);
-    },
-    timeAgo(timestamp) {
-      return dayjs.unix(timestamp).fromNow();
-    },
-    fullDate(timestamp) {
-      return dayjs.unix(timestamp).format('llll');
     },
   },
 };
