@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-    <thread-list :threads="threads" />
+    <forum-list :forums="forums" />
   </div>
 </template>
 
 <script>
 import sourceData from '@/data.json';
-import ThreadList from '@/components/ThreadList.vue';
+import ForumList from '@/components/ForumList.vue';
 export default {
   name: 'PageHome',
   components: {
-    ThreadList,
+    ForumList,
   },
   data() {
     return {
-      threads: sourceData.threads,
+      forums: sourceData.forums,
     };
   },
 };
