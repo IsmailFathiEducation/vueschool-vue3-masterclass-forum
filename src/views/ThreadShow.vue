@@ -15,6 +15,8 @@
       </p>
 
       <posts-list :posts="threadPosts" />
+
+      <post-editor @save="savePost" />
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@
 <script>
 import sourceData from '@/data.json';
 import PostsList from '@/components/PostsList.vue';
+import PostEditor from '@/components/PostEditor.vue';
 export default {
   name: 'PageThreadShow',
   props: {
@@ -32,6 +35,7 @@ export default {
   },
   components: {
     PostsList,
+    PostEditor,
   },
   data() {
     return {
@@ -51,6 +55,11 @@ export default {
   methods: {
     userById(userId) {
       return this.users.find((u) => u.id === userId);
+    },
+    savePost({ post }) {
+      post.threadId = this.threadId;
+      this.thread.posts.push(post.id);
+      this.posts.push(post);
     },
   },
 };
