@@ -4,12 +4,31 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChuckName: "PageHome" */ '@/views/Home.vue')
+    component: () => import(/* webpackChunckName: "PageHome" */ '@/views/Home.vue')
+  },
+  {
+    path: '/forum/:forumId',
+    name: 'ForumShow',
+    component: () => import(/* webpackChunckName: "PageForum" */ '@/views/ForumShow.vue'),
+    props: true,
+    beforeEnter: (to, from, next) => {
+      const forumExists = sourceData.forums.find(f => f.id === to.params.forumId)
+      if (forumExists) {
+        next()
+      } else {
+        next({
+          name: 'NotFound',
+          params: { pathMatch: to.path.substring(1).split('/') },
+          query: to.query,
+          hash: to.hash
+        })
+      }
+    }
   },
   {
     path: '/thread/:threadId',
     name: 'ThreadShow',
-    component: () => import(/* webpackChuckName: "PageThreadShow" */ '@/views/ThreadShow.vue'),
+    component: () => import(/* webpackChunckName: "PageThreadShow" */ '@/views/ThreadShow.vue'),
     props: true,
     beforeEnter: (to, from, next) => {
       const threadExists = sourceData.threads.find(t => t.id === to.params.threadId)
@@ -28,7 +47,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import(/* webpackChuckName: "NotFound" */ '@/views/NotFound.vue')
+    component: () => import(/* webpackChunckName: "NotFound" */ '@/views/NotFound.vue')
   }
 ]
 
