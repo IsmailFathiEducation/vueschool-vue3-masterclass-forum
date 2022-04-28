@@ -7,6 +7,12 @@ const routes = [
     component: () => import(/* webpackChunckName: "PageHome" */ '@/views/Home.vue')
   },
   {
+    path: '/category/:categoryId',
+    name: 'CategoryShow',
+    component: () => import(/* webpackChunckName: "PageCategoy" */ '@/views/CategoryShow.vue'),
+    props: true
+  },
+  {
     path: '/forum/:forumId',
     name: 'ForumShow',
     component: () => import(/* webpackChunckName: "PageForum" */ '@/views/ForumShow.vue'),
