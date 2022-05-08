@@ -3,7 +3,7 @@ import sourceData from '@/data.json'
 export default createStore({
   state: {
     ...sourceData,
-    authId: 'VXjpr2WHa8Ux4Bnggym8QFLdv5C3'
+    authId: 'ALXhxjwgY9PinwNGHpfai6OWyDu2'
   },
   mutations: {
     SET_POST: (state, post) => {

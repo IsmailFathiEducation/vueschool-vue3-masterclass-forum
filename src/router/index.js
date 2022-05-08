@@ -7,6 +7,11 @@ const routes = [
     component: () => import(/* webpackChunckName: "PageHome" */ '@/views/Home.vue')
   },
   {
+    path: '/me',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue')
+  },
+  {
     path: '/category/:categoryId',
     name: 'CategoryShow',
     component: () => import(/* webpackChunckName: "PageCategoy" */ '@/views/CategoryShow.vue'),
