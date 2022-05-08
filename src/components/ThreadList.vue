@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'ThreadList',
   props: {
@@ -58,17 +59,7 @@ export default {
     },
   },
   computed: {
-    posts() {
-      return this.$store.state.posts;
-    },
-    users() {
-      return this.$store.state.users;
-    },
-  },
-  methods: {
-    userById(userId) {
-      return this.users.find((u) => u.id === userId);
-    },
+    ...mapGetters(['posts', 'users', 'userById']),
   },
 };
 </script>

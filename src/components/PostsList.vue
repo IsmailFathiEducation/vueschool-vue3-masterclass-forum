@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'PostsList',
   props: {
@@ -49,14 +50,7 @@ export default {
     },
   },
   computed: {
-    users() {
-      return this.$store.state.users;
-    },
-  },
-  methods: {
-    userById(userId) {
-      return this.users.find((u) => u.id === userId);
-    },
+    ...mapGetters(['users', 'userById']),
   },
 };
 </script>
