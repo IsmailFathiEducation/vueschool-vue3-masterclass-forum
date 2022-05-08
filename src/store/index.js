@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
 import sourceData from '@/data.json'
 export default createStore({
-  state: sourceData,
+  state: {
+    ...sourceData,
+    authId: 'VXjpr2WHa8Ux4Bnggym8QFLdv5C3'
+  },
   mutations: {
     SET_POST: (state, post) => {
       state.posts.push(post)
@@ -12,6 +15,7 @@ export default createStore({
     }
   },
   getters: {
+    authUser: (state) => state.users.find(u => u.id === state.authId),
     users: (state) => state.users,
     userById: (state) => (userId) => {
       return state.users.find((u) => u.id === userId)
