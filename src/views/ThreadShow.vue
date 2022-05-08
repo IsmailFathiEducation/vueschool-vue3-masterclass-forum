@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import sourceData from '@/data.json';
 import PostsList from '@/components/PostsList.vue';
 import PostEditor from '@/components/PostEditor.vue';
 export default {
@@ -37,14 +36,16 @@ export default {
     PostsList,
     PostEditor,
   },
-  data() {
-    return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
-      users: sourceData.users,
-    };
-  },
   computed: {
+    threads() {
+      return this.$store.state.threads;
+    },
+    posts() {
+      return this.$store.state.posts;
+    },
+    users() {
+      return this.$store.state.users;
+    },
     thread() {
       return this.threads.find((t) => t.id === this.threadId);
     },

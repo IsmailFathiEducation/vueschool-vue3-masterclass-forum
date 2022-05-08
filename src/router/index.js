@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import sourceData from '@/data.json'
+import store from '@/store'
 const routes = [
   {
     path: '/',
@@ -18,7 +18,7 @@ const routes = [
     component: () => import(/* webpackChunckName: "PageForum" */ '@/views/ForumShow.vue'),
     props: true,
     beforeEnter: (to, from, next) => {
-      const forumExists = sourceData.forums.find(f => f.id === to.params.forumId)
+      const forumExists = store.state.forums.find(f => f.id === to.params.forumId)
       if (forumExists) {
         next()
       } else {
@@ -37,7 +37,7 @@ const routes = [
     component: () => import(/* webpackChunckName: "PageThreadShow" */ '@/views/ThreadShow.vue'),
     props: true,
     beforeEnter: (to, from, next) => {
-      const threadExists = sourceData.threads.find(t => t.id === to.params.threadId)
+      const threadExists = store.state.threads.find(t => t.id === to.params.threadId)
       if (threadExists) {
         next()
       } else {

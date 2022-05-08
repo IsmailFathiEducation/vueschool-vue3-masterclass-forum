@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import sourceData from '@/data.json';
 import ForumList from '@/components/ForumList.vue';
 export default {
   name: 'CategoryList',
@@ -27,7 +26,9 @@ export default {
   },
   methods: {
     categoryForums(categoryId) {
-      return sourceData.forums.filter((f) => f.categoryId === categoryId);
+      return this.$store.state.forums.filter(
+        (f) => f.categoryId === categoryId
+      );
     },
   },
 };
