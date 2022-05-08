@@ -19,7 +19,7 @@
             <img
               class="avatar-small"
               :src="authUser.avatar"
-              :alt="`${authUser.name} profile picture`"
+              :alt="`${authUser.username} profile picture`"
             />
             <span>
               {{ authUser.name }}
