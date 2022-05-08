@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container push-top">
     <h1>Welcome to the forum</h1>
     <category-list :categories="categories" />
   </div>
